@@ -20,9 +20,27 @@ const firestoreDB = admin.firestore()
 firestoreDB
   .collection('products')
   .get()
-  .then(data => {
-    data.forEach(document => {
+  .then(collection => {
+    console.log('Collection products')
+    collection.forEach(document => {
       console.log(document.id)
       console.log(document.data())
     })
+  })
+
+firestoreDB
+  .doc('products/8QAxnJJmYqjxkxOHDeTe')
+  .update({
+    nodeJSField: true,
+    price: 111111
+  })
+  .then(() => {
+    firestoreDB
+      .doc('products/8QAxnJJmYqjxkxOHDeTe')
+      .get()
+      .then(document => {
+        console.log('Document products/8QAxnJJmYqjxkxOHDeTe')
+        console.log(document.id)
+        console.log(document.data())
+      })
   })
