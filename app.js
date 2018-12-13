@@ -17,30 +17,35 @@ const firestoreDB = admin.firestore()
 
 // console.log('Collection reference: ', firestoreDB.collection('products').get())
 
-firestoreDB
-  .collection('products')
-  .get()
-  .then(collection => {
-    console.log('Collection products')
-    collection.forEach(document => {
-      console.log(document.id)
-      console.log(document.data())
-    })
-  })
+// firestoreDB
+//   .collection('products')
+//   .get()
+//   .then(collection => {
+//     console.log('Collection products')
+//     collection.forEach(document => {
+//       console.log(document.id)
+//       console.log(document.data())
+//     })
+//   })
 
-firestoreDB
-  .doc('products/8QAxnJJmYqjxkxOHDeTe')
-  .update({
-    nodeJSField: true,
-    price: 111111
-  })
-  .then(() => {
-    firestoreDB
-      .doc('products/8QAxnJJmYqjxkxOHDeTe')
-      .get()
-      .then(document => {
-        console.log('Document products/8QAxnJJmYqjxkxOHDeTe')
-        console.log(document.id)
-        console.log(document.data())
-      })
-  })
+// async await
+const updateProduct = async (productId) => {
+  console.log(`Actualizando el producto ${productId}`)
+  await firestoreDB
+    .doc(`products/${productId}`)
+    .update({
+      newField: true,
+      price: 999
+    })
+
+  console.log('Listar producto')
+  const document = await firestoreDB
+    .doc(`products/${productId}`)
+    .get()
+
+  console.log(`Document products/${productId}`)
+  console.log(document.id)
+  console.log(document.data())
+}
+
+updateProduct('8QAxnJJmYqjxkxOHDeTe')
