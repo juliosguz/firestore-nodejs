@@ -16,7 +16,7 @@ const updateUser = async (userId, newData) => {
   await firestoreDB
     .collection('users')
     .doc(userId)
-    .set(newData, { merge: true })
+    .update(newData)
 
   const response = await firestoreDB
     .doc(`users/${userId}`)
@@ -29,3 +29,10 @@ const updateUser = async (userId, newData) => {
 updateUser('w8PvMsgiMBjPibioHND8', {
   updateDate: (new Date()).toISOString()
 })
+
+const newDocRef = firestoreDB.collection('users').doc()
+newDocRef.set({ qwer: 1, asdf: 777 })
+
+firestoreDB
+  .collection('users')
+  .add({ firstName: ' OMG', lastName: 'LOL' })
