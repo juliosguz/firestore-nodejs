@@ -9,6 +9,9 @@ admin.initializeApp({
 
 const firestoreDB = admin.firestore()
 
+// Check README.md
+firestoreDB.settings({ timestampsInSnapshots: true })
+
 // firestoreDB.collection('products').add({
 //   name: `Arroz ${Date.now()}`,
 //   price: 666,
