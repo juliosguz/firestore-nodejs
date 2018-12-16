@@ -36,3 +36,4 @@ newDocRef.set({ qwer: 1, asdf: 777 })
 firestoreDB
   .collection('users')
   .add({ firstName: ' OMG', lastName: 'LOL' })
+
